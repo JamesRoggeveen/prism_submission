@@ -1,0 +1,35 @@
+# General settings
+basis_Nx: 40
+basis_Ny: 40
+cyl_radius: 0.15
+x_cyl_initial: 0.3  # Starting guess for x-position
+y_cyl_initial: 0.1  # Starting guess for y-position
+
+# These weights are critical for balancing the different objectives.
+# You will need to experiment with these values!
+residual_weights:
+  equation: 1.0
+  outer_boundary: 1.0
+  inner_boundary: 1.0
+  integral_objective: 1.0 # A small value to start
+  constraint_penalty: 1.0
+
+# Sampling parameters
+n_pde: 10000
+n_bc: 10000
+
+# Solver settings
+solver_type: "FirstOrder"
+optimizer_name: "nadam"      # <-- Changed from "Adam"
+loss_strategy: "RegularizedAdaptive"
+solver_kwargs:
+  rtol: 1e-6
+  atol: 1e-6
+verbose: True
+learning_rate: 0.001 # Only used for Adam
+max_steps: 3000     # Only used for Adam
+n_epochs: 20000     # Only used for Adam
+grad_clipping: 100000.0
+regularization_strength: 0.001
+# Data paths
+results_dir: "results/"

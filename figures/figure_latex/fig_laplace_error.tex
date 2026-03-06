@@ -1,0 +1,82 @@
+\documentclass[tikz, border=5pt]{standalone}
+\usepackage{xcolor}
+\usetikzlibrary{matrix}
+\usepackage{tikz}
+\usepackage{commath}
+\usepackage{newtxmath}
+\tikzset{no slope/.code={\pgfslopedattimefalse}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\graphicspath{{../figure_primatives/}}
+
+
+\usetikzlibrary{arrows,shapes,positioning,math,calc}
+\usetikzlibrary{patterns,decorations.markings,decorations.pathmorphing}
+\usetikzlibrary{calc}
+\begin{document}
+
+% 1. Define the colors from your list to match the plot
+\definecolor{doglegcolor}{HTML}{ff595e}
+\definecolor{adam1color}{HTML}{ffca3a}
+\definecolor{adam2color}{HTML}{8ac926}
+\definecolor{adam3color}{HTML}{1982c4}
+\definecolor{adam4color}{HTML}{6a4c93}
+
+\begin{tikzpicture}[scale=1,every node/.style={scale=1}]
+    \tikzmath{
+            \panelSpacing = 10;
+            \panelSpacingTwo = \panelSpacing;
+            \panelOne = 5.25;
+            \panelTwo = \panelOne + \panelSpacing;
+            \panelThree = \panelTwo + \panelSpacing;
+            \panelFour = \panelThree + \panelSpacing + .5;
+            \panelFive = \panelFour+\panelSpacing;
+            \panelY =5;
+            \colorX = 38.5;
+            \colorY = \panelY+.25;
+            \labelx = -2.8;
+            \labely = -3.1;
+            \boxX = 29.5;
+            \boxY = 10;
+            \heightColor=9;
+        }
+    \tikzstyle{boundaryStyle} = [line width=2pt,black,line cap = round];
+    \tikzstyle{particleStyle} = [black!30!white];
+    \tikzstyle{vectorStyle} = [line width=2pt,black,-latex,line cap= round];
+    \tikzstyle{dashedStyle} = [line width=2pt,dashed];
+	\path [use as bounding box] (0,0) rectangle (\boxX cm, \boxY cm);
+    \begin{scope}[shift={(\panelTwo,\panelY)}]
+        \node at (0,0) {\includegraphics{laplace_basis_size_supp_b.png}};
+        % \filldraw[white] (-6.15,-3.8) rectangle ++(2.8,8.75);
+    \end{scope}
+    \begin{scope}[shift={(\panelOne,\panelY)}]
+        \node at (0,0) {\includegraphics{laplace_basis_size_supp_a.png}};
+    \end{scope}
+
+
+\begin{scope}[shift={(\panelThree,\panelY)}]
+% 2. Define a style for the colored circles in the legend
+\tikzset{
+    legenddot/.style={circle, draw=#1, fill=#1, inner sep=0pt, minimum size=8pt},
+}
+
+% 3. Create the table using a TikZ matrix
+\matrix (legendtable) [
+    matrix of nodes,
+    nodes={anchor=center, text depth=0.25ex,font=\large},
+    row sep=4pt,
+    column sep=0pt,
+    row 1/.style={nodes={font=\large\bfseries, anchor=center}}
+]
+{
+% --- Header Row ---
+ & Optimizer &  Epochs & LR & Coll. Pts.\\
+|[legenddot=doglegcolor]| & Dogleg &  N/A & N/A & 20,000 \\
+|[legenddot=adam1color]|  & ADAM &  1,000 & 0.1 & 20,000 \\
+|[legenddot=adam2color]|  & ADAM &  20,000 & 0.01 & 20,000 \\
+|[legenddot=adam3color]|  & ADAM &   50,000 & 0.01 & 20,000 \\
+|[legenddot=adam4color]|  & ADAM &  50,000 & 0.01 & 40,000 \\
+};
+\end{scope}
+
+\end{tikzpicture}
+\end{document}

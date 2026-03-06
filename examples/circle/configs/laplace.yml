@@ -1,0 +1,28 @@
+# General settings
+basis_Nx: 100
+basis_Ny: 100
+factor: 50
+filter_frac: 1.0 # 2/3
+residual_weights:
+  equation: 1.0
+  boundary: 1.0
+
+# Sampling parameters
+n_pde: 15000
+n_bc: 15000
+
+sigma: 2.0
+
+# Solver settings
+solver: 'LevenbergMarquardt' # or 'Adam'
+solver_kwargs:
+  rtol: 1e-4
+  atol: 1e-4
+verbose: True
+learning_rate: 0.01 # Only used for Adam
+max_steps: 3000
+n_epochs: 1000  # Only used for Adam
+
+# Data paths
+results_dir: "results/"
+domain_path: "data/taal_lake_mask_small.png"

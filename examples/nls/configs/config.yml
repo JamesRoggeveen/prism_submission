@@ -1,0 +1,39 @@
+# General settings
+nx: 256
+nt: 201
+x_scale: 5.0
+t_scale: 0.785398  # pi/4
+trainable: True
+precondition: False
+
+# Basis and model parameters
+basis_Nx: 45
+basis_Nt: 45
+filter_frac: 1.0 # 2/3
+
+residual_weights:
+  equation: 1.0
+  initial_condition: 1.0
+
+# Sampling parameters
+n_pde: 20000
+n_ic: 150
+
+# Solver settings
+solver_type: "Dogleg"
+optimizer_name: "nadam"      # <-- Changed from "Adam"
+loss_strategy: "Standard"
+solver_kwargs:
+  rtol: 1e-8
+  atol: 1e-8
+verbose: True
+learning_rate: 0.001 # Only used for Adam
+max_steps: 1000     # Only used for Adam
+n_epochs: 500
+causal_num_chunks: 20
+causal_tol: 10.0
+damping: 0.1
+
+# Data paths
+data_path: "data/NLS.mat"
+results_dir: "results/"

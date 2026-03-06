@@ -1,0 +1,34 @@
+# configs/laplace_bilevel.yml
+
+# --- Model Parameters ---
+basis_Nx: 48
+basis_Ny: 48
+n_pde: 10000
+n_bc: 512
+
+# --- Geometry and Physics ---
+cyl_radius: 0.15
+x_cyl_initial: 0.0
+y_cyl_initial: 0.3
+
+# --- Bilevel Solver Parameters ---
+n_outer_steps: 100         # Number of steps to move the cylinder
+outer_solver_lr: 0.005     # Learning rate for the ADAM optimizer moving the cylinder
+inner_solver_rtol: 1.0e-5  # Relative tolerance for the inner L-BFGS physics solve
+inner_solver_atol: 1.0e-5  # Absolute tolerance for the inner L-BFGS physics solve
+regularization_strength: 0.0001
+# --- Loss Weights ---
+# Note: These weights are now used in different places.
+# The 'physics' weights are for the inner solve, 'objective' weights are for the outer solve.
+residual_weights:
+  # Inner loop weights
+  equation: 1.0
+  outer_boundary: 10.0
+  inner_boundary: 25.0
+  # Outer loop weights
+  integral_objective: 1.0
+  constraint_penalty: 50.0
+
+# --- Other ---
+n_grid: 500
+verbose: True

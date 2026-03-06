@@ -1,0 +1,111 @@
+\documentclass[tikz, border=10pt]{standalone}
+\usepackage{tikz}
+\usepackage{amsmath} % For \vec, \nabla, \partial commands
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\usetikzlibrary{shapes.geometric, arrows.meta, fit}
+\graphicspath{{../figure_primatives/}}
+
+\begin{document}
+
+\begin{tikzpicture}[
+    block/.style={
+        rectangle, draw, very thick,
+        text width=4.5cm, align=center,
+        minimum height=3cm, rounded corners=8pt,
+        font=\large
+    },
+    small_block/.style={
+        rectangle, draw, very thick,
+        align=center, minimum height=1.2cm,
+        font=\large,rounded corners=4pt
+    },
+    arrow/.style={-Latex, very thick}
+]
+
+% --- COORDINATE DEFINITIONS ---
+\coordinate (c_func)      at (-8, 3);
+\coordinate (c_phys_eq)   at (-8, -1);
+\coordinate (c_geom)      at (-8, -5);
+\coordinate (c_initial) at (-2,3);
+
+\coordinate (c_pde_loss)  at (2, -1);
+\coordinate (c_bc_loss)   at (2, -2.5);
+\coordinate (c_data_loss) at (2, -4);
+\coordinate (c_loss_label) at (2,0);
+
+\coordinate (c_data)      at (2, -6);
+\coordinate (c_colloc)    at (-3, -3);
+
+\coordinate (c_optimizer) at (8, 0);
+\coordinate (c_opt_func)  at (8, -4.5);
+% ---------------------------------
+
+
+% ---------------- NODES ----------------
+\node[block] (func) at (c_func) {
+    \textbf{Function Ansatz} \\
+    $u(\vec{x}) = \sum_{i,j} c_{ij} \Phi_{ij}(\vec{x})$};
+
+\node[block] (initial) at (c_initial) {
+\textbf{Initial $\boldsymbol{c_{ij}}$}\\
+\includegraphics[width=3cm]{schematic_b.png}
+};
+
+\node[block] (phys_eq) at (c_phys_eq) {
+    \textbf{Physical Equation} \\
+    $\nabla^2 u = 0 \quad \text{in } \Omega$ \\
+    $u|_{\partial\Omega} = g$
+};
+
+\node[block] (geom) at (c_geom) {
+    \textbf{Geometry} \\
+    \includegraphics[width=3cm]{schematic_c.png}
+};
+
+% Middle: Loss Function components
+\node[small_block] (pde_loss) at (c_pde_loss) {PDE Residuals};
+\node[small_block] (bc_loss) at (c_bc_loss) {Boundary Residuals};
+\node[small_block] (data_loss) at (c_data_loss) {Data Loss};
+\node (loss_label) at (c_loss_label) {\large \textbf{Loss Function}};
+\node[draw, very thick, rounded corners=8pt, inner sep=0.25cm,
+      fit=(loss_label) (pde_loss) (bc_loss) (data_loss)] (loss) {};
+
+% Inputs to the loss function
+\node[small_block] (data) at (c_data) {\textbf{Data}};
+\node[small_block] (colloc) at (c_colloc) {\textbf{Collocation Points}};
+
+% Right side: Optimizer and Final Result
+\node[block] (optimizer) at (c_optimizer) {
+    \textbf{Optimizer} \\ (e.g., Adam, Levenberg-Marquardt)
+};
+
+\node[block] (opt_func) at (c_opt_func) {
+    \textbf{Optimized $\boldsymbol{c_{ij}}$} \\
+    \includegraphics[width=3cm]{schematic_a.png}
+};
+
+
+% ---------------- ARROWS ----------------
+
+\coordinate (fork_top) at (-1.5, -.5);
+\coordinate (fork_bottom) at (-1.5, -2);
+% \draw (fork_top) -- (fork_bottom); % Draw the shared vertical line
+
+% Draw paths from the sources (phys_eq, colloc) to this shared line.
+\draw[arrow] (phys_eq.east) -- (-.2,-1);
+\draw[very thick] (colloc.north) -- (-3,-1);
+
+% \draw[arrow] (fork_top) -- (pde_loss.west);
+% \draw[arrow] (fork_bottom) -- (bc_loss.west);
+
+% Other arrows
+\draw[arrow] (geom.east) -| (colloc.south); % A direct line is cleaner here
+\draw[arrow] (data.north) -- (loss.south);
+\draw[arrow] (loss.east) -- ++(.5,0) |- (optimizer.west);
+\draw[arrow] (func.east) -- (initial.west);
+\draw[arrow] (initial.east) -| (optimizer.north);
+\draw[arrow] (optimizer.south) --(opt_func.north);
+
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,23 @@
+basis_Nx: 35
+basis_Ny: 35
+learning_rate: 0.01
+loss_strategy: RegularizedAdaptive
+max_steps: 10000
+n_bc: 5000
+n_epochs: 50000
+n_pde: 20000
+optimizer_name: adam
+precondition: true
+regularization_strength: 0.001
+residual_weights:
+  boundary: 1.0
+  equation: 1.0
+results_dir: results/10021446
+script_name: 35_laplace
+seed: 1759430780
+solver_kwargs:
+  atol: 1.0e-10
+  rtol: 1.0e-10
+solver_type: FirstOrder
+timestamp: '10021446'
+verbose: false

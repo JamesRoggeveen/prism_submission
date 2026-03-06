@@ -1,0 +1,39 @@
+# General settings
+nx: 512
+nt: 201
+t_scale: 0.5  # pi/4
+trainable: True
+precondition: False
+fit_initial: True
+
+# Basis and model parameters
+basis_Nx: 30
+basis_Nt: 30
+filter_frac: 1.0 # 2/3
+
+residual_weights:
+  equation: 1.0
+  initial_condition: 1.0
+
+# Sampling parameters
+n_pde: 40000
+n_ic: 1000
+
+# Solver settings
+solver_type: "Dogleg"
+optimizer_name: "adam"      # <-- Changed from "Adam"
+loss_strategy: "RegularizedAdaptive"
+solver_kwargs:
+  rtol: 1e-6
+  atol: 1e-6
+verbose: True
+learning_rate: 0.1 # Only used for Adam
+max_steps: 1000     # Only used for Adam
+n_epochs: 2000     # Only used for Adam
+causal_num_chunks: 20
+causal_tol: .1
+regularization_strength: 0.0001
+
+# Data paths
+data_path: "data/allen_cahn.mat"
+results_dir: "results/"

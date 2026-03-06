@@ -1,0 +1,27 @@
+basis_Nx: 15
+basis_Ny: 15
+causal_num_chunks: 20
+causal_tol: 0.1
+factor: 50
+filter_frac: 1.0
+k: 1.0
+learning_rate: 0.1
+loss_strategy: RegularizedAdaptive
+max_steps: 10000
+n_bc: 3000
+n_epochs: 2000
+n_pde: 20000
+optimizer_name: nadam
+regularization_strength: 0.001
+residual_weights:
+  boundary: 1.0
+  equation: 1.0
+results_dir: results/09151512
+script_name: 15_laplace
+seed: 1757963571
+solver_kwargs:
+  atol: 1.0e-10
+  rtol: 1.0e-10
+solver_type: Dogleg
+timestamp: 09151512
+verbose: false

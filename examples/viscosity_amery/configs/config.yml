@@ -1,0 +1,41 @@
+# Basis and model parameters
+basis_Nx: 20
+basis_Ny: 20
+filter_frac: 1.0
+trainable: True
+experiment_name: "visc_inv_Amery"
+
+# Sampling parameters
+n_pde: 20000
+n_data: 20000
+n_bc: 800
+
+# Physical parameters
+rho_i: 917.0
+rho_w: 1030.0
+g: 9.8
+
+residual_weights:
+  equation: 1.0
+  boundary: 1.0
+  reference_data: 1.0
+
+# Solver settings
+solver_type: "FirstOrder"
+optimizer_name: "nadam"      # <-- Changed from "Adam"
+loss_strategy: "RegularizedAdaptive"
+precondition: False
+verbose: True
+solver_kwargs:
+  rtol: 1e-6
+  atol: 1e-6
+verbose: True
+learning_rate: 0.01 # Only used for Adam
+max_steps: 1000     # Only used for Adam
+n_epochs: 10000     # Only used for Adam
+causal_tol: .1
+regularization_strength: 0.0001
+
+# Data paths
+data_path: "data/Amery_data.h5"
+results_dir: "results/"

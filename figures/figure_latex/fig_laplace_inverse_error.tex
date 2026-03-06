@@ -1,0 +1,48 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{commath}
+\usepackage{newtxmath}
+\tikzset{no slope/.code={\pgfslopedattimefalse}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\graphicspath{{../figure_primatives/}}
+
+
+\usetikzlibrary{arrows,shapes,positioning,math,calc}
+\usetikzlibrary{patterns,decorations.markings,decorations.pathmorphing}
+\usetikzlibrary{calc}
+
+\begin{document}
+	\begin{tikzpicture}[scale=1,every node/.style={scale=1}]
+    \tikzmath{
+            \panelSpacing = 10;
+            \panelSpacingTwo = \panelSpacing;
+            \panelOne = 5;
+            \panelTwo = \panelOne + \panelSpacing;
+            \panelThree = \panelTwo + \panelSpacing;
+            \panelFour = 10;
+            \panelFive = \panelFour+\panelSpacing;
+            \verticalSpace = 10;
+            \panelYTwo = 3.5;
+            \colorX = 22;
+            \colorY = \panelYTwo;
+            \colorYTwo = \colorY+\verticalSpace;
+            \panelY = \panelYTwo + \verticalSpace;
+            \labelx = -3.8;
+            \labely = -4;
+            \boxX = 23;
+            \boxY = 7;
+            \heightColor=7;
+        }
+    \tikzstyle{boundaryStyle} = [line width=2pt,black,line cap = round];
+    \tikzstyle{particleStyle} = [black!30!white];
+    \tikzstyle{vectorStyle} = [line width=2pt,black,-latex,line cap= round];
+    \tikzstyle{dashedStyle} = [line width=2pt,dashed];
+	% \path [use as bounding box] (0,0) rectangle (\boxX cm, \boxY cm);
+
+    \begin{scope}
+        \node at (0,0) {\includegraphics{laplace_inverse_error.png}};
+    \end{scope}
+
+
+	\end{tikzpicture}
+\end{document}

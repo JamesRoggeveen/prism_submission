@@ -1,0 +1,33 @@
+# General settings
+basis_Nx: 18
+basis_Ny: 18
+basis_Nt: 18
+factor: 50
+filter_frac: 1.0 # 2/3
+c: 1.0
+residual_weights:
+  equation: 1.0
+  boundary: 1.0
+  initial_condition: 1.0
+  initial_velocity: 1.0
+
+# Sampling parameters
+n_pde: 30000
+n_bc: 10000
+
+# Solver settings
+solver_type: "FirstOrder"
+optimizer_name: "nadam"      # <-- Changed from "Adam"
+loss_strategy: "RegularizedAdaptive"
+solver_kwargs:
+  rtol: 1e-10
+  atol: 1e-10
+verbose: True
+learning_rate: 0.1 # Only used for Adam
+max_steps: 10000     # Only used for Adam
+n_epochs: 6000     # Only used for Adam
+causal_num_chunks: 20
+causal_tol: .1
+regularization_strength: 0.0001
+# Data paths
+results_dir: "results/"

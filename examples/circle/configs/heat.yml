@@ -1,0 +1,30 @@
+# General settings
+alpha: 0.125
+
+basis_Nx: 10
+basis_Ny: 10
+basis_Nt: 10
+filter_frac: 1.0 # 2/3
+residual_weights:
+  equation: 1.0
+  boundary: 1.0
+  initial: 1.0
+
+# Sampling parameters
+n_pde: 800
+n_bc: 500
+n_initial: 2000
+n_t: 30
+
+# Solver settings
+solver: 'LevenbergMarquardt' # or 'Adam'
+solver_kwargs:
+  rtol: 1e-4
+  atol: 1e-4
+verbose: True
+learning_rate: 0.01 # Only used for Adam
+max_steps: 500 
+n_epochs: 10000  # Only used for Adam
+
+# Data paths
+results_dir: "results/"

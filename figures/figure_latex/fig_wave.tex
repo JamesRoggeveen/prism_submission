@@ -1,0 +1,101 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{commath}
+\usepackage{newtxmath}
+\tikzset{no slope/.code={\pgfslopedattimefalse}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\graphicspath{{../figure_primatives/}}
+
+
+\usetikzlibrary{arrows,shapes,positioning,math,calc}
+\usetikzlibrary{patterns,decorations.markings,decorations.pathmorphing}
+\usetikzlibrary{calc}
+
+\begin{document}
+	\begin{tikzpicture}[scale=1,every node/.style={scale=1}]
+    \tikzmath{
+            \panelSpacing = 8.75;
+            \panelSpacingTwo = \panelSpacing;
+            \panelOne = 5.25;
+            \panelTwo = \panelOne + \panelSpacing;
+            \panelThree = \panelTwo + \panelSpacing;
+            \panelFour = \panelThree + \panelSpacing;
+            \panelFive = \panelFour+\panelSpacing;
+            \verticalSpace = 9.5;
+            \panelYTwo = 5;
+            \colorX = 46.5;
+            \colorY = \panelYTwo+.25;
+            \colorYTwo = \colorY+\verticalSpace;
+            \panelY = \panelYTwo + \verticalSpace;
+            \labelx = -2.8;
+            \labely = -3.1;
+            \boxX = 48;
+            \boxY = 20;
+            \heightColor=9;
+        }
+    \tikzstyle{boundaryStyle} = [line width=2pt,black,line cap = round];
+    \tikzstyle{particleStyle} = [black!30!white];
+    \tikzstyle{vectorStyle} = [line width=2pt,black,-latex,line cap= round];
+    \tikzstyle{dashedStyle} = [line width=2pt,dashed];
+	\path [use as bounding box] (0,0) rectangle (\boxX cm, \boxY cm);
+    % \begin{scope}[shift={(\colorX,\colorY)}]
+    %     \node at (0,0) {\includegraphics[height=\heightColor cm]{wave_plot_d_colorbar.png}};
+    % \end{scope}
+
+    \begin{scope}[shift={(\panelFive,\panelYTwo)}]
+        \node at (0,0) {\includegraphics{wave_plot_j.png}};
+        \filldraw[white] (-6.15,-3.8) rectangle ++(2.8,8.75);
+        \filldraw[white] (-2,4.25) rectangle ++(5,1);
+    \end{scope}
+    \begin{scope}[shift={(\panelFour,\panelYTwo)}]
+        \node at (0,0) {\includegraphics{wave_plot_i.png}};
+        \filldraw[white] (-6.15,-3.8) rectangle ++(2.8,8.75);
+        \filldraw[white] (-2,4.25) rectangle ++(5,1);
+    \end{scope}
+    \begin{scope}[shift={(\panelThree,\panelYTwo)}]
+        \node at (0,0) {\includegraphics{wave_plot_h.png}};
+        \filldraw[white] (-6.15,-3.8) rectangle ++(2.8,8.75);
+        \filldraw[white] (-2,4.25) rectangle ++(5,1);
+    \end{scope}
+    \begin{scope}[shift={(\panelTwo,\panelYTwo)}]
+        \node at (0,0) {\includegraphics{wave_plot_g.png}};
+        \filldraw[white] (-6.15,-3.8) rectangle ++(2.8,8.75);
+        \filldraw[white] (-2,4.25) rectangle ++(5,1);
+    \end{scope}
+        \begin{scope}[shift={(\panelOne,\panelYTwo)}]
+        \node at (0,0) {\includegraphics{wave_plot_f.png}};
+        \filldraw[white] (-2,4.25) rectangle ++(5,1);
+    \end{scope}
+    \begin{scope}[shift={(\panelFive,\panelY)}]
+            \node at (0,0) {\includegraphics{wave_plot_e.png}};
+            \filldraw[white] (-6.15,-3.8) rectangle ++(2.8,8.75);
+        \filldraw[white] (-4,-3.6) rectangle ++(9,-1);
+    \end{scope}
+     \begin{scope}[shift={(\panelFour,\panelY)}]
+            \node at (0,0) {\includegraphics{wave_plot_d.png}};
+            \filldraw[white] (-6.15,-3.8) rectangle ++(2.8,8.75);
+        \filldraw[white] (-4,-3.6) rectangle ++(9,-1);
+    \end{scope}
+    \begin{scope}[shift={(\panelThree,\panelY)}]
+            \node at (0,0) {\includegraphics{wave_plot_c.png}};
+            \filldraw[white] (-6.15,-3.8) rectangle ++(2.8,8.75);
+        \filldraw[white] (-4,-3.6) rectangle ++(9,-1);
+    \end{scope}
+    \begin{scope}[shift={(\panelTwo,\panelY)}]
+        \node at (0,0) {\includegraphics{wave_plot_b.png}};
+        \filldraw[white] (-6.15,-3.8) rectangle ++(2.8,8.75);
+        \filldraw[white] (-4,-3.6) rectangle ++(9,-1);
+    \end{scope}
+    \begin{scope}[shift={(\panelOne,\panelY)}]
+        \node at (0,0) {\includegraphics{wave_plot_a.png}};
+        \filldraw[white] (-4,-3.6) rectangle ++(9,-1);
+    \end{scope}
+    \begin{scope}[shift={(\colorX,\colorY)}]
+        \node at (0,0) {\includegraphics[height=\heightColor cm]{wave_plot_f_colorbar.png}};
+    \end{scope}
+    \begin{scope}[shift={(\colorX,\colorYTwo)}]
+        \node at (0,0) {\includegraphics[height=\heightColor cm]{wave_plot_a_colorbar.png}};
+    \end{scope}
+
+	\end{tikzpicture}
+\end{document}

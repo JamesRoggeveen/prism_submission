@@ -1,0 +1,36 @@
+# Basis and model parameters
+basis_Nx: 20
+basis_Ny: 20
+filter_frac: 1.0
+trainable: True
+experiment_name: "visc_inv_synthetic"
+
+# Sampling parameters
+n_pde: 2000
+n_data: 2000
+n_bc: 600
+
+# Physical parameters
+rho_i: 917.0
+rho_w: 1030.0
+g: 9.8
+
+# Solver settings
+solver_type: "LevenbergMarquardt"
+optimizer_name: "nadam"      # <-- Changed from "Adam"
+loss_strategy: "Standard"
+solver_kwargs:
+  rtol: 1e-6
+  atol: 1e-6
+residual_weights:
+  equation: 1.0
+  boundary: 1.0
+  reference_data: 1.0
+learning_rate: 0.0001
+n_epochs: 10000
+max_steps: 2000
+verbose: True
+
+# Data paths
+data_path: "data/synthetic_data.h5"
+results_dir: "results/"

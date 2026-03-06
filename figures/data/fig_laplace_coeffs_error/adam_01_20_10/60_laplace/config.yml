@@ -1,0 +1,23 @@
+basis_Nx: 60
+basis_Ny: 60
+learning_rate: 0.1
+loss_strategy: RegularizedAdaptive
+max_steps: 1000
+n_bc: 5000
+n_epochs: 1000
+n_pde: 20000
+optimizer_name: adam
+precondition: true
+regularization_strength: 0.001
+residual_weights:
+  boundary: 1.0
+  equation: 1.0
+results_dir: results/10022036
+script_name: 60_laplace
+seed: 1759451785
+solver_kwargs:
+  atol: 1.0e-10
+  rtol: 1.0e-10
+solver_type: FirstOrder
+timestamp: '10022036'
+verbose: false

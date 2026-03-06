@@ -1,0 +1,28 @@
+# General settings
+basis_Nx: 30
+basis_Ny: 30
+residual_weights:
+  equation: 1.0
+  boundary: 1.0
+
+# Sampling parameters
+n_pde: 20000
+n_bc: 5000
+
+# Solver settings
+solver_type: "FirstOrder"
+optimizer_name: "adam"      # <-- Changed from "Adam"
+loss_strategy: "RegularizedAdaptive"
+solver_kwargs:
+  rtol: 1e-10
+  atol: 1e-10
+verbose: True
+learning_rate: 0.1 # Only used for Adam
+max_steps: 500     # Only used for Adam
+n_epochs: 1000     # Only used for Adam
+causal_num_chunks: 20
+causal_tol: .1
+regularization_strength: 0.001
+grad_clipping: 1000000.0
+# Data paths
+results_dir: "results/"
